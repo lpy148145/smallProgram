@@ -1,0 +1,60 @@
+<!-- index.wxml-->
+<canvas canvas-id='mycanvas' bindtap='hideCanvas' bindlongpress="shareImg" hidden='{{hidden}}' class='canvas'></canvas>
+<view class='container'>
+  <swiper class="daily-list" bindchange="getCurrent" current="{{today}}">
+    <swiper-item class="daily-sentence" wx:for="{{contentList}}" wx:key="{{index}}">
+      <view class="image">
+        <image src="{{item.image_url}}" mode="widthFix" class="swiper-image"></image>
+        <text class="day-num day-num-up">{{date.day - order}}</text>
+      </view>
+      <text class="date"> {{date.year}}-{{date.month}} {{week[order].week}}</text>
+      <!-- <view class='date'>
+        {{week[order].week}}
+      </view> -->
+      <view class="sentence">
+        <text class="day-num day-num-down">{{date.day - order}}</text>
+        <scroll-view classclass="content" scrollY="true" style="height: 450rpx; padding-bottom: 80rpx;">
+          <view class="sentence-content">
+            <text>{{item.word}}</text>
+          </view>
+          <view class="sentence-info">
+            <text class="sentence-author">{{item.word_from}}</text>
+          </view>
+        </scroll-view>
+      </view>
+    </swiper-item>
+  </swiper>
+</view>
+<view class="btn-all">
+  <image bindtap="passChange" data-index="0" class="btn" src='../../assets/images/icon-refresh.png'></image>
+  <image bindtap="passQuery" data-index="0" class="btn" src='../../assets/images/icon-today.png'></image>
+  <image bindtap="passSave" data-index="0" class="btn" src='{{saveImg}}'></image>
+</view>
+
+<!-- 
+<view class="container">
+    <swiper bindchange="scrollChange" class="daily-list" current="{{current}}">
+        <swiper-item class="daily-sentence" wx:for="{{dailySentence}}" wx:key="uuid">
+            <view class="image">
+                <image backgroundSize="cover" class="sentence-bg" src="{{item.image.url}}"></image>
+                <text class="day-num day-num-up">{{day[index]}}</text>
+            </view>
+            <text class="date">{{year[index]}}.{{month[index]}} {{weekday[index]}}</text>
+            <view class="sentence">
+                <text class="day-num day-num-down">{{day[index]}}</text>
+                <scroll-view classclass="content" scrollY="true" style="height: 450rpx; padding-bottom: 80rpx;">
+                    <view class="sentence-content">
+                        <text>{{item.content}}</text>
+                    </view>
+                    <view class="sentence-info">
+                        <text class="sentence-author">{{item.subheading}}</text>
+                    </view>
+                </scroll-view>
+            </view>
+        </swiper-item>
+    </swiper>
+    <view class="btn-all">
+        <image bindtap="getRandomSentence" class="btn" src="./images/icon-refresh.png"></image>
+        <image bindtap="showToday" class="btn" src="./images/icon-today.png"></image>
+    </view>
+</view> -->
